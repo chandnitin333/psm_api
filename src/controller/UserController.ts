@@ -1,5 +1,5 @@
 
-import { createUser } from '../models/Users';
+import { createUser, getAllUsers } from '../models/Users';
 import { ApiResponse } from '../utils/ApiResponse';
 
 import { Logger } from '../logger/Logger';
@@ -24,7 +24,7 @@ export class UserController {
             return response;
         } catch (error) {
             if (error.code === 'P2002' && error.meta && error.meta.target.includes('User_email_key')) {
-               
+
                 let response = ApiResponse.ErrorResponse(res, "Email is already in use", 409);
                 return response;
             } else {
@@ -32,6 +32,17 @@ export class UserController {
                 next(error);
             }
 
+        }
+    }
+
+    static async getAllUsers(req, res, next) {
+        try {
+            let users = await getAllUsers();
+            let response = ApiResponse.successResponseWithData(res, "Users fetched successfully", users);
+            return response;
+        } catch (error) {
+            let response = ApiResponse.ErrorResponse(res, "Failed to fetch users", error);
+            return response;
         }
     }
 
