@@ -1,0 +1,121 @@
+PROJECT COFIGURATION
+mkdir node_project
+cd node_project
+
+
+npm init -y
+
+
+npm install -   typescript
+
+
+nano tsconfig.json
+
+
+----------------Added code ======================
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "esModuleInterop": true,
+    "target": "es6",
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "outDir": "dist"
+  },
+  "lib": ["es2015"]
+}
+
+
+npm install --save express@4.17.1
+npm install    @types/express@4.17.1
+
+mkdir src
+
+nano src/app.ts
+
+import express from 'express';
+const app = express();
+const port = 3000;
+
+app.get('/', (req, res) => {
+  res.send('Hello World!');
+});
+
+app.listen(port, () => {
+  return console.log(`Express is listening at http://localhost:${port}`);
+});
+
+
+
+
+USEr for code compilation
+
+npx tsc  
+
+
+=================Install packages==================================
+
+
+npm install  bcrypt
+npm install    @types/bcrypt
+
+npm install  body-parser
+npm install    @types/body-parser
+
+npm install    express
+npm install    @types/express
+
+npm install    express-validator
+npm install    @types/express-validator
+
+npm install    jsonwebtoken
+npm install    @types/jsonwebtoken
+
+npm install    mongoose
+npm install    @types/mongoose
+
+npm install    node
+npm install    @types/node
+
+npm install    nodemailer
+npm install    @types/nodemailer
+
+npm install  -save-dev  nodemon
+npm install  -save-dev  @types/nodemon
+
+
+npm install    ts-node
+
+
+npm install    @types/ts-node
+
+npm install -g ts-node
+
+npm install    winston
+npm install    @types/winston
+
+
+npm install    moment
+npm install    @types/moment
+
+
+npm install    express-fileupload
+npm install    @types/express-fileupload
+
+npm install    multer
+npm install    @types/multer
+
+npm install    cors
+npm install    @types/cors
+
+npm install @prisma/client
+npm install --save-dev prisma typescript ts-node @types/node
+
+
+npm install dotenv
+
+npx prisma init
+
+npx prisma generate
+
+npx prisma migrate dev --name init
