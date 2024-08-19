@@ -28,3 +28,16 @@ model admin_user {
   password  String
   username String @unique
 }
+
+model District {
+  id    Int    @id @default(autoincrement())
+  name  String
+  talukas Taluka[]
+}
+
+model Taluka {
+  id    Int    @id @default(autoincrement())
+  name  String
+  district_id Int
+  district    District     @relation(fields: [district_id], references: [id])
+}

@@ -1,7 +1,7 @@
 import * as fs from 'fs';
 import * as path from 'path';
 
-const schemaFiles = ['user.prisma', 'post.prisma', 'admin_user.prisma'];
+const schemaFiles = ['user.prisma', 'post.prisma', 'admin_user.prisma','district.prisma','taluka.prisma'];
 const combinedSchemaPath = path.join(__dirname, 'schema.prisma');
 
 let combinedSchema = `

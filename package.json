@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "prestart": " ts-node prisma/schema.ts",
     "start": "nodemon --exec ts-node src/app.ts",
-    "postinstall": "npx prisma generate"
+    "postinstall": "npx prisma generate",
+    "migrate": "npx prisma migrate dev --name init"
   },
   "keywords": [],
   "author": "",
