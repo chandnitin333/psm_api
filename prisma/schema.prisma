@@ -12,6 +12,7 @@ model User {
   id    Int    @id @default(autoincrement())
   name  String
   email String @unique
+  posts Post[] // Add this line to establish the opposite relation
 }
 
 model Post {
@@ -21,4 +22,9 @@ model Post {
   published Boolean  @default(false)
   authorId  Int
   author    User     @relation(fields: [authorId], references: [id])
+}
+model admin_user {
+  id    Int    @id @default(autoincrement())
+  password  String
+  username String @unique
 }
