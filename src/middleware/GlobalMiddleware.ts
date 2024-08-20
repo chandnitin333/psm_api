@@ -19,14 +19,17 @@ export class GlobalMiddleware {
     static async authenticate(req, res, next) {
         const authHeader = req.headers.authorization;
         const token = authHeader ? authHeader.slice(7, authHeader.length) : null;
+        if (!authHeader || !authHeader.startsWith('Bearer ')) {
+            return res.status(401).json({ message: 'Authorization header missing or malformed' });
+        }
         try {
-
             req.errorStatus = 401;
-            jwt.verify(token, getEnvironmentVariable().jwt_secret, ((err, decoded) => {
+            jwt.verify(token, getEnvironmentVariable().JWT_SECRET, ((err, decoded) => {
+               
                 if (err) {
                     next(err);
                 } else if (!decoded) {
-                    next(new Error('User Not Authorised'));
+                    next(new Error('User Not Authorized'));
                 } else {
                     req.user = decoded;
                     next();

@@ -1,5 +1,6 @@
 import { Router } from "express";
 import { UserController } from "../controller/UserController";
+import { GlobalMiddleware } from "../middleware/GlobalMiddleware";
 
 export class userRoutes {
     public router: Router;
@@ -19,7 +20,8 @@ export class userRoutes {
         // this.router.get('/tutorials', TuterialController.getTuterial);
 
         // this.router.get('/tutorials/:id', TuterialController.getTutDetailsById);
-        this.router.get('/users', UserController.getAllUsers);
+        this.router.get('/users', GlobalMiddleware.checkError, GlobalMiddleware.authenticate, UserController.getAllUsers);
+
 
     }
 
@@ -31,9 +33,8 @@ export class userRoutes {
 
         // this.router.post('/post', upload.array("mediafile"), UserValidator.postVerify(), GlobalMiddleware.checkError, PostController.newPost);
         this.router.get('/test', () => {
-            console.log('tutorials')
         });
-
+        this.router.post('/login', UserController.login);
 
     }
 

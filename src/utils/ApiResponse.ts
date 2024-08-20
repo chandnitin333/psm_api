@@ -52,13 +52,13 @@ export class ApiResponse {
         return res.status(400).json(resData);
     };
 
-    static unauthorizedResponse = function (res, msg) {
+    static unauthorizedResponse = function (res, msg, status = 401) {
 
         var data = {
-            status: 401,
+            status: status,
             message: msg,
         };
-        return res.status(401).json(data);
+        return res.status(status).json(data);
     };
 
     static tokenExpiredResponse = function (res, msg) {
