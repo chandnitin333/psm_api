@@ -5,6 +5,7 @@ import * as mongoose from 'mongoose';
 import { getEnvironmentVariable,setEnvironmentVariables } from './environments/env';
 import userRoutes from './routes/UserRouter';
 import cors = require('cors');
+import DistrictRouter from "./routes/DistrictRouter";
 // import fileUpload = require("express-fileupload")
 
 
@@ -30,6 +31,7 @@ export class Server {
 
     setRoutes() {
         this.app.use('/api/user/', userRoutes);
+        this.app.use('/api/district/', DistrictRouter);
     }
 
 

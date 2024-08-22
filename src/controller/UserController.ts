@@ -6,6 +6,7 @@ import { getAdminUser } from '../models/adminUser';
 import { createUser, getAllUsers } from '../models/Users';
 import { ApiResponse } from '../utils/ApiResponse';
 import { Utils } from '../utils/Utils';
+import { ConstantData } from '../constant/common';
 const logger = new Logger().logger;
 export class UserController {
 
@@ -39,7 +40,7 @@ export class UserController {
 
     static async getAllUsers(req, res, next) {
         try {
-            let ofset = 2;
+            let ofset = ConstantData.PAGE_OFFSET;
             let pageNumber = (req.body?.pageNumber ?? 1) - 1;
             let searchText = req.body.searchText ?? "";
             let limit = (pageNumber != 0) ? pageNumber * ofset : pageNumber;
