@@ -6,6 +6,7 @@ import { getEnvironmentVariable,setEnvironmentVariables } from './environments/e
 import userRoutes from './routes/UserRouter';
 import cors = require('cors');
 import DistrictRouter from "./routes/DistrictRouter";
+import TalukaRouter from "./routes/TalukaRouter";
 // import fileUpload = require("express-fileupload")
 
 
@@ -32,6 +33,7 @@ export class Server {
     setRoutes() {
         this.app.use('/api/user/', userRoutes);
         this.app.use('/api/district/', DistrictRouter);
+        this.app.use('/api/taluka/', TalukaRouter);
     }
 
 

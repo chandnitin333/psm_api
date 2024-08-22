@@ -33,6 +33,10 @@ export async function getAllDistricts(params) {
     });
 }
 
+export async function getAllDistrictForDDL() {
+     return await prisma.district.findMany();
+}
+
 /**
  * Function to get a district by ID.
  * 

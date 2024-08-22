@@ -1,6 +1,6 @@
 import { ConstantData } from '../constant/common';
 import { Logger } from '../logger/Logger';
-import {createDistrict, deleteDistrict, getAllDistricts, getDistrict, updateDistrict} from '../models/District';
+import {createDistrict, deleteDistrict, getAllDistrictForDDL, getAllDistricts, getDistrict, updateDistrict} from '../models/District';
 import { ApiResponse } from '../utils/ApiResponse';
 export class DistrictController {
 
@@ -18,9 +18,6 @@ export class DistrictController {
 
     static async getAllDistricts(req, res, next) {
         try {
-            /**
-             * The offset value used for pagination.
-             */
             let offset = ConstantData.PAGE_OFFSET;
             let pageNumber = (req.body?.pageNumber ?? 1) - 1;
             let searchText = req.body?.searchText ?? "";
@@ -77,4 +74,14 @@ export class DistrictController {
         }
     }
 
+    static async getAllDistrictForDDL(req, res, next) {
+        try {
+            let districts = await getAllDistrictForDDL();
+            let response = ApiResponse.successResponseWithData(res, "Districts fetched successfully", districts);
+            return response;
+        } catch (error) {
+            let response = ApiResponse.ErrorResponse(res, "Failed to fetch Districts", error);
+            return response;
+        }
+    }
 }
