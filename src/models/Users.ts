@@ -22,6 +22,7 @@ export async function createUser(name: string, email: string) {
  * @returns A promise that resolves to an array of users.
  */
 export async function getAllUsers(params) {
+    console.log("params?.pageNumber", params?.pageNumber)
     return await prisma.user.findMany({
         where: {
             ...(params.searchText && {
@@ -30,7 +31,8 @@ export async function getAllUsers(params) {
                 }
             })
         },
-        take: params.pageNumber // Replace 10 with the desired limit
+        take: params?.limit || 2,
+        skip: params?.pageNumber || 0
     });
 }
 
