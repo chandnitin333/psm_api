@@ -27,6 +27,7 @@ export class userRoutes {
 
 
     postRoutes() {
+        this.router.post('/users', GlobalMiddleware.checkError, GlobalMiddleware.authenticate, UserController.getAllUsers);
         this.router.post('/signup', UserController.signUp);
         // this.router.post('/signup', UserValidator.validSignUp(), GlobalMiddleware.checkError, UserController.signUp);
         // this.router.post('/login', UserValidator.loginVerify(), GlobalMiddleware.checkError, UserController.login);

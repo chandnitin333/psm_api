@@ -21,8 +21,17 @@ export async function createUser(name: string, email: string) {
  * 
  * @returns A promise that resolves to an array of users.
  */
-export async function getAllUsers() {
-    return await prisma.user.findMany();
+export async function getAllUsers(params) {
+    return await prisma.user.findMany({
+        where: {
+            ...(params.searchText && {
+                name: {
+                    contains: params.searchText
+                }
+            })
+        },
+        take: params.pageNumber // Replace 10 with the desired limit
+    });
 }
 
 /**

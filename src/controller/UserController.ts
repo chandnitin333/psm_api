@@ -39,7 +39,16 @@ export class UserController {
 
     static async getAllUsers(req, res, next) {
         try {
-            let users = await getAllUsers();
+            let pageNumber =(req.body?.pageNumber != 1) ?  (req.body?.pageNumber ?? 1) -1 : 1;
+            let searchText = req.body.searchText ?? "";
+            let limit= (pageNumber!=0) ? pageNumber * 10:pageNumber ;
+            console.log("limit=",limit)
+          
+            let params={
+                pageNumber:limit,
+                searchText:searchText
+            }
+            let users = await getAllUsers(params);
             let response = ApiResponse.successResponseWithData(res, "Users fetched successfully", users);
             return response;
         } catch (error) {
