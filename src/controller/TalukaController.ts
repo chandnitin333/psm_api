@@ -1,16 +1,18 @@
-import { createTaluka, deleteTaluka, getAllTalukas, getTaluka, updateTaluka } from '../models/Taluka';
+
+// import {createDistrict, deleteDistrict, getAllDistricts, getDistrict, updateDistrict} from '../models/District';
+import { createTaluka, deleteTaluka, getAllTalukas, getTaluka, getTalukaCount, updateTaluka } from '../models/Taluka';
 import { ApiResponse } from '../utils/ApiResponse';
 export class TalukaController {
 
     static async createTaluka(req, res, next) {
         try {
-            let { name, district_id} = req.body;
+            let { name, district_id } = req.body;
             let taluka: any = await createTaluka(name, district_id);
-            let response = ApiResponse.successResponse(res, taluka.name+" Taluka created successfully");
+            let response = ApiResponse.successResponse(res, taluka.name + " Taluka created successfully");
             return response;
         } catch (error) {
-           let response = ApiResponse.ErrorResponse(res, "Failed to create taluka", error);
-                return response;
+            let response = ApiResponse.ErrorResponse(res, "Failed to create taluka", error);
+            return response;
         }
     }
 
@@ -25,9 +27,9 @@ export class TalukaController {
                 pageNumber: limit,
                 searchText: searchText
             }
-
             let talukas = await getAllTalukas(params);
-            let response = ApiResponse.successResponseWithData(res, "Taluka fetched successfully", talukas);
+            let totalCount = (searchText == '') ? await getTalukaCount() : Object.keys(talukas).length;
+            let response = ApiResponse.successResponseWithData(res, "Taluka fetched successfully", { talukas, totalCount: totalCount });
             return response;
         } catch (error) {
             let response = ApiResponse.ErrorResponse(res, "Failed to fetch Taluka", error);
@@ -58,7 +60,7 @@ export class TalukaController {
             return response;
         }
     }
-    
+
     static async deleteTaluka(req, res, next) {
         try {
             let data = req.body;

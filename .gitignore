@@ -3,4 +3,5 @@ logs
 package-lock.json
 dist
 uploads
+.env
 

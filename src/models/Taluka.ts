@@ -19,7 +19,7 @@ export async function createTaluka(name: string, district_id: number) {
  * @returns A promise that resolves to an array of taluka.
  */
 export async function getAllTalukas(params) {
-   return await prisma.taluka.findMany({
+    return await prisma.taluka.findMany({
         where: {
             ...(params.searchText && {
                 name: {
@@ -63,4 +63,15 @@ export async function deleteTaluka(talukaId: number) {
         where: { id: talukaId },
     });
     return taluka;
+}
+
+
+/**
+ * Function to get the count of talukas.
+ * 
+ * @returns A promise that resolves to the count of talukas.
+ */
+export async function getTalukaCount() {
+    const count = await prisma.taluka.count();
+    return count;
 }
