@@ -1,9 +1,8 @@
-import { ConstantData } from '../constant/common';
 import { Logger } from '../logger/Logger';
 import {createDistrict, deleteDistrict, getAllDistrictForDDL, getAllDistricts, getDistrict, updateDistrict} from '../models/District';
 import { ApiResponse } from '../utils/ApiResponse';
+const logger = new Logger().logger;
 export class DistrictController {
-
     static async createDisrict(req, res, next) {
         try {
             let { name } = req.body;
@@ -11,6 +10,7 @@ export class DistrictController {
             let response = ApiResponse.successResponse(res, district.name+" District created successfully");
             return response;
         } catch (error) {
+            // logger.info("action:User/login", { message: `User : ${user?.username} logged in successfully at ${new Date().toISOString()}` });
            let response = ApiResponse.ErrorResponse(res, "Failed to create district", error);
                 return response;
         }
@@ -18,7 +18,7 @@ export class DistrictController {
 
     static async getAllDistricts(req, res, next) {
         try {
-            let offset = ConstantData.PAGE_OFFSET;
+            let offset:number = parseInt(process.env.PAGE_OFFSET) || 0;
             let pageNumber = (req.body?.pageNumber ?? 1) - 1;
             let searchText = req.body?.searchText ?? "";
             let limit = (pageNumber != 0) ? pageNumber * offset : pageNumber;

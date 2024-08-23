@@ -1,5 +1,3 @@
-import { ConstantData } from '../constant/common';
-// import {createDistrict, deleteDistrict, getAllDistricts, getDistrict, updateDistrict} from '../models/District';
 import { createTaluka, deleteTaluka, getAllTalukas, getTaluka, updateTaluka } from '../models/Taluka';
 import { ApiResponse } from '../utils/ApiResponse';
 export class TalukaController {
@@ -18,7 +16,7 @@ export class TalukaController {
 
     static async getAllTaluka(req, res, next) {
         try {
-            let offset = ConstantData.PAGE_OFFSET;
+            let offset:any = process.env.PAGE_OFFSET || 0;
             let pageNumber = (req.body?.pageNumber ?? 1) - 1;
             let searchText = req.body?.searchText ?? "";
             let limit = (pageNumber != 0) ? pageNumber * offset : pageNumber;

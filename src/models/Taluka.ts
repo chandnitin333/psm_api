@@ -1,6 +1,5 @@
 
 import prisma from '../config/conn';
-import { ConstantData } from '../constant/common';
 /**
  * Function to check if a taluka exists by name.
  * 
@@ -28,8 +27,11 @@ export async function getAllTalukas(params) {
                 }
             })
         },
-        take: params?.limit || ConstantData.PAGE_OFFSET,
-        skip: params?.pageNumber || 0
+        take: params?.limit || 10,
+        skip: params?.pageNumber || 0,
+        include:{
+            district:true
+        }
     });
 }
 

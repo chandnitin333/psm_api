@@ -2,7 +2,6 @@
 
 
 import prisma from '../config/conn';
-import { ConstantData } from '../constant/common';
 
 /**
  * Function to create a user.
@@ -32,7 +31,8 @@ export async function getAllUsers(params) {
                 }
             })
         },
-        take: params?.limit || ConstantData.PAGE_OFFSET,
+        // take: params?.limit || process.env.PAGE_OFFSET || 0,
+        take: params?.limit || 10,
         skip: params?.pageNumber || 0
     });
 }

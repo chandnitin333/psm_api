@@ -16,22 +16,22 @@ export class talukaRoutes {
 
 
     getRoutes() {
-        this.router.get('/talukas', GlobalMiddleware.checkError, GlobalMiddleware.authenticate, TalukaController.getAllTaluka);
-
-        this.router.get('/getSingleTalukaById', GlobalMiddleware.checkError, GlobalMiddleware.authenticate,TalukaController.getTaluka);
+       
+        this.router.get('/get-single-taluka', GlobalMiddleware.checkError, GlobalMiddleware.authenticate,TalukaController.getTaluka);
         // this.router.get('/districts', DistrictController.getAllDistricts);
     }
 
 
     postRoutes() {
-        this.router.post('/createTaluka', GlobalMiddleware.checkError, TalukaController.createTaluka);
+         this.router.post('/talukas', GlobalMiddleware.checkError, GlobalMiddleware.authenticate, TalukaController.getAllTaluka);
+         this.router.post('/create-taluka', GlobalMiddleware.checkError,GlobalMiddleware.authenticate, TalukaController.createTaluka);
     }
 
     deleteRoute() {
-        this.router.delete('/deleteTaluka', GlobalMiddleware.checkError, TalukaController.deleteTaluka);
+        this.router.delete('/delete-taluka', GlobalMiddleware.checkError,GlobalMiddleware.authenticate, TalukaController.deleteTaluka);
     }
     putRoute() {
-        this.router.put('/updateTaluka', GlobalMiddleware.checkError, TalukaController.updateTaluka);
+        this.router.put('/update-taluka', GlobalMiddleware.checkError,GlobalMiddleware.authenticate, TalukaController.updateTaluka);
     }
 }
 

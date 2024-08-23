@@ -1,6 +1,5 @@
 
 import prisma from '../config/conn';
-import { ConstantData } from '../constant/common';
 /**
  * Function to check if a district exists by name.
  * 
@@ -28,7 +27,8 @@ export async function getAllDistricts(params) {
                 }
             })
         },
-        take: params?.limit || ConstantData.PAGE_OFFSET,
+        take: params?.limit || parseInt(process.env.PAGE_OFFSET) || 0,
+        // take: params?.limit || 2,
         skip: params?.pageNumber || 0
     });
 }
