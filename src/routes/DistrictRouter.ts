@@ -15,22 +15,23 @@ export class districtRoutes {
 
 
     getRoutes() {
-        this.router.get('/districts', GlobalMiddleware.checkError, GlobalMiddleware.authenticate, DistrictController.getAllDistricts);
-
-        this.router.get('/getSingleDistrictById', GlobalMiddleware.checkError, GlobalMiddleware.authenticate, DistrictController.getDistrict);
+        
+        this.router.get('/get-single-district', GlobalMiddleware.checkError, GlobalMiddleware.authenticate, DistrictController.getDistrict);
         // this.router.get('/districts', DistrictController.getAllDistricts);
+        this.router.get('/districts_ddl', GlobalMiddleware.checkError, GlobalMiddleware.authenticate, DistrictController.getAllDistrictForDDL);
     }
 
 
     postRoutes() {
-        this.router.post('/createDistrict', GlobalMiddleware.checkError, DistrictController.createDisrict);
+        this.router.post('/districts', GlobalMiddleware.checkError, GlobalMiddleware.authenticate, DistrictController.getAllDistricts);
+        this.router.post('/create-district', GlobalMiddleware.checkError, GlobalMiddleware.authenticate, DistrictController.createDisrict);
     }
 
     deleteRoute() {
-        this.router.delete('/deleteDistrict', GlobalMiddleware.checkError, DistrictController.deleteDistrict);
+        this.router.delete('/delete-district', GlobalMiddleware.checkError,GlobalMiddleware.authenticate, DistrictController.deleteDistrict);
     }
     putRoute() {
-        this.router.put('/updateDistrict', GlobalMiddleware.checkError, DistrictController.updateDistrict);
+        this.router.put('/update-district', GlobalMiddleware.checkError, GlobalMiddleware.authenticate, DistrictController.updateDistrict);
     }
 }
 

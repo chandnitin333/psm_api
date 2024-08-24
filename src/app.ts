@@ -1,4 +1,6 @@
 import {Server} from './server';
+const dotenv = require('dotenv');
+dotenv.config();
 
 let server = new Server().app;
 

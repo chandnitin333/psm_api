@@ -1,0 +1,11 @@
+model Grampanchayat {
+  id    Int    @id @default(autoincrement())
+  name  String
+  district_id Int
+  taluka_id Int
+  createdAt  DateTime   @default(now())
+  updatedAt  DateTime   @updatedAt
+  district  District    @relation(fields: [district_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  taluka    Taluka      @relation(fields:[taluka_id], references:[id], onDelete: Cascade, onUpdate: Cascade)
+  gatgrampanchayat Gatgrampanchayat[]
+}

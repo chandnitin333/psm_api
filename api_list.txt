@@ -1,0 +1,46 @@
+#########################################
+#######        DISTRICT           #######
+
+/api/admin/get-single-district (GET)
+/api/admin/districts (POST)
+/api/admin/districts_ddl (GET)
+/api/admin/districts (POST) all district
+/api/admin/delete-district (DELETE)
+/api/admin/update-district (PUT)
+
+#########################################
+
+#########################################
+#######          TALUKA           #######
+
+/api/admin/get-single-taluka (GET)
+/api/admin/talukas (POST) get all taluka
+/api/admin/create-taluka (POST)
+/api/admin/delete-taluka (DELETE)
+/api/admin/update-taluka (PUT)
+
+#########################################
+
+#########################################
+#######      GRAM PANCHAYAT       #######
+
+/api/admin/get-single-gram-panchayat (GET)
+/api/admin/all-gram-panchayat (POST)
+/api/admin/create-gram-panchayat (POST)
+/api/admin/delete-gram-panchayat (DELETE)
+/api/admin/update-gram-panchayat (PUT)
+/api/admin/get-taluka-list-by-distict-id (POST) it is used for when select district then show all the taluka list
+
+#########################################
+
+#########################################
+#######     GAT GRAM PANCHAYAT    #######
+
+/api/admin/get-single-gat-gram-panchayat (GET)
+/api/admin/get-all-gat-gram-panchayat (POST)
+/api/admin/create-gat-gram-panchayat (POST)
+/api/admin/update-gat-gram-panchayat (PUT)
+/api/admin/delete-gat-gram-panchayat (DELETE)
+/api/admin/get-grampanchayat-list-by-taluka-id (POST) it is used for when select taluka then show all the gram panchayat list
+
+#########################################
