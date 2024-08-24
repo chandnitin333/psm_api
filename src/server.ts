@@ -33,9 +33,10 @@ export class Server {
 
     setRoutes() {
         this.app.use('/api/user/', userRoutes);
-        this.app.use('/api/district/', DistrictRouter);
-        this.app.use('/api/taluka/', TalukaRouter);
-        this.app.use('/api/gram-panchayat/', GrampanchayatRouter);
+        // this.app.use('/api/district/', DistrictRouter);
+        // this.app.use('/api/taluka/', TalukaRouter);
+        // this.app.use('/api/gram-panchayat/', GrampanchayatRouter);
+        this.app.use('/api/admin/', [DistrictRouter, TalukaRouter, GrampanchayatRouter]);
     }
 
 

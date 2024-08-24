@@ -1,33 +1,33 @@
 #########################################
 #######        DISTRICT           #######
 
-/api/district/get-single-district (GET)
-/api/district/districts (POST)
-/api/district/districts_ddl (GET)
-/api/district/districts (POST) all district
-/api/district/delete-district (DELETE)
-/api/district/update-district (PUT)
+/api/admin/get-single-district (GET)
+/api/admin/districts (POST)
+/api/admin/districts_ddl (GET)
+/api/admin/districts (POST) all district
+/api/admin/delete-district (DELETE)
+/api/admin/update-district (PUT)
 
 #########################################
 
 #########################################
 #######          TALUKA           #######
 
-/api/taluka/get-single-taluka (GET)
-/api/taluka/talukas (POST) get all taluka
-/api/taluka/create-taluka (POST)
-/api/taluka/delete-taluka (DELETE)
-/api/taluka/update-taluka (PUT)
+/api/admin/get-single-taluka (GET)
+/api/admin/talukas (POST) get all taluka
+/api/admin/create-taluka (POST)
+/api/admin/delete-taluka (DELETE)
+/api/admin/update-taluka (PUT)
 
 #########################################
 
 #########################################
 #######      GRAM PANCHAYAT       #######
 
-/api/gram-panchayat/get-single-gram-panchayat (GET)
-/api/gram-panchayat/all-gram-panchayat (POST)
-/api/gram-panchayat/create-gram-panchayat (POST)
-/api/gram-panchayat/delete-gram-panchayat (DELETE)
-/api/gram-panchayat/update-gram-panchayat (PUT)
+/api/admin/get-single-gram-panchayat (GET)
+/api/admin/all-gram-panchayat (POST)
+/api/admin/create-gram-panchayat (POST)
+/api/admin/delete-gram-panchayat (DELETE)
+/api/admin/update-gram-panchayat (PUT)
 
 #########################################
