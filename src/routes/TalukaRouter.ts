@@ -1,6 +1,5 @@
 import { Router } from "express";
 import { GlobalMiddleware } from "../middleware/GlobalMiddleware";
-import { DistrictController } from "../controller/DistrictController";
 import { TalukaController } from "../controller/TalukaController";
 
 export class talukaRoutes {

@@ -31,13 +31,30 @@ model admin_user {
 
 model District {
   id    Int    @id @default(autoincrement())
-  name  String
+  name  String @unique
+  createdAt  DateTime   @default(now())
+  updatedAt  DateTime   @updatedAt
   talukas Taluka[]
+  grampanchayat Grampanchayat[]
 }
 
 model Taluka {
   id    Int    @id @default(autoincrement())
   name  String
   district_id Int
-  district    District     @relation(fields: [district_id], references: [id])
+  createdAt  DateTime   @default(now())
+  updatedAt  DateTime   @updatedAt
+  district    District     @relation(fields: [district_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  grampanchayat Grampanchayat[]
+}
+
+model Grampanchayat {
+  id    Int    @id @default(autoincrement())
+  name  String
+  district_id Int
+  taluka_id Int
+  createdAt  DateTime   @default(now())
+  updatedAt  DateTime   @updatedAt
+  district  District    @relation(fields: [district_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  taluka    Taluka      @relation(fields:[taluka_id], references:[id], onDelete: Cascade, onUpdate: Cascade)
 }

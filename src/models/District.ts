@@ -19,18 +19,24 @@ export async function createDistrict(name: string) {
  * @returns A promise that resolves to an array of districts.
  */
 export async function getAllDistricts(params) {
-   return await prisma.district.findMany({
-        where: {
-            ...(params.searchText && {
-                name: {
-                    contains: params.searchText
-                }
-            })
-        },
-        take: params?.limit || parseInt(process.env.PAGE_OFFSET) || 0,
-        // take: params?.limit || 2,
-        skip: params?.pageNumber || 0
-    });
+return await prisma.district.findMany({
+    where: {
+        ...(params.searchText && {
+            name: {
+                contains: params.searchText
+            }
+        })
+    },
+    select: {
+        id: true,
+        name: true
+    },
+    take: params?.limit || parseInt(process.env.PAGE_OFFSET) || 0,
+    skip: params?.pageNumber || 0,
+    orderBy: {
+        id: 'desc'
+    }
+});
 }
 
 export async function getAllDistrictForDDL() {
@@ -55,6 +61,10 @@ export async function updateDistrict(districtId: number, data: { name?: string; 
     const district = await prisma.district.update({
         where: { id: districtId },
         data,
+        select: {
+            id: true,
+            name: true
+        },
     });
     return district;
 }
@@ -65,4 +75,21 @@ export async function deleteDistrict(districtId: number) {
         where: { id: districtId },
     });
     return district;
+}
+
+export async function getDistrictCount() {
+    const count = await prisma.district.count();
+    return count;
+}
+
+export async function findDistrict(params) {
+   return await prisma.district.findMany({
+        where: {
+            ...(params.searchText && {
+                name: {
+                    contains: params.searchText
+                }
+            })
+        }
+    });
 }

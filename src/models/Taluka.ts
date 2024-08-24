@@ -29,8 +29,16 @@ export async function getAllTalukas(params) {
         },
         take: params?.limit || 10,
         skip: params?.pageNumber || 0,
+         orderBy: {
+            id: 'desc'
+        },
         include:{
-            district:true
+            district:{
+                select: {
+                    id: true,
+                    name: true
+                }
+            }
         }
     });
 }
@@ -44,6 +52,14 @@ export async function getAllTalukas(params) {
 export async function getTaluka(talukaId: number) {
     const taluka = await prisma.taluka.findUnique({
         where: { id: talukaId },
+        include:{
+            district:{
+                select: {
+                    id: true,
+                    name: true
+                }
+            }
+        }
     });
     return taluka;
 }
@@ -53,6 +69,11 @@ export async function updateTaluka(talukaId: number, data: { name?: string; dist
     const taluka = await prisma.taluka.update({
         where: { id: talukaId },
         data,
+        select:{
+            id: true,
+            name: true,
+            district_id: true
+        }
     });
     return taluka;
 }
@@ -74,4 +95,19 @@ export async function deleteTaluka(talukaId: number) {
 export async function getTalukaCount() {
     const count = await prisma.taluka.count();
     return count;
+}
+
+export async function findTaluka(params) {
+    return await prisma.taluka.findMany({
+        where: {
+            ...(params.searchText && {
+                name: {
+                    contains: params.searchText
+                }
+            }),
+            ...(params.id && {
+                district_id: params.id
+            })
+        }
+    });
 }

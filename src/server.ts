@@ -7,6 +7,7 @@ import userRoutes from './routes/UserRouter';
 import cors = require('cors');
 import DistrictRouter from "./routes/DistrictRouter";
 import TalukaRouter from "./routes/TalukaRouter";
+import GrampanchayatRouter from "./routes/GrampanchayatRouter";
 // import fileUpload = require("express-fileupload")
 
 
@@ -34,6 +35,7 @@ export class Server {
         this.app.use('/api/user/', userRoutes);
         this.app.use('/api/district/', DistrictRouter);
         this.app.use('/api/taluka/', TalukaRouter);
+        this.app.use('/api/gram-panchayat/', GrampanchayatRouter);
     }
 
 
