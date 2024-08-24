@@ -5,4 +5,5 @@ model District {
   updatedAt  DateTime   @updatedAt
   talukas Taluka[]
   grampanchayat Grampanchayat[]
+  gatgrampanchayat Gatgrampanchayat[]
 }

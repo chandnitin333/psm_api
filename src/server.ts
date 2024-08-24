@@ -8,6 +8,7 @@ import cors = require('cors');
 import DistrictRouter from "./routes/DistrictRouter";
 import TalukaRouter from "./routes/TalukaRouter";
 import GrampanchayatRouter from "./routes/GrampanchayatRouter";
+import GatgrampanchayatRouter from "./routes/GatgrampanchayatRouter";
 // import fileUpload = require("express-fileupload")
 
 
@@ -36,7 +37,7 @@ export class Server {
         // this.app.use('/api/district/', DistrictRouter);
         // this.app.use('/api/taluka/', TalukaRouter);
         // this.app.use('/api/gram-panchayat/', GrampanchayatRouter);
-        this.app.use('/api/admin/', [DistrictRouter, TalukaRouter, GrampanchayatRouter]);
+        this.app.use('/api/admin/', [DistrictRouter, TalukaRouter, GrampanchayatRouter, GatgrampanchayatRouter]);
     }
 
 

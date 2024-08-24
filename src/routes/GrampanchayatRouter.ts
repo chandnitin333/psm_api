@@ -24,6 +24,7 @@ export class grampanchayatRoutes {
     postRoutes() {
          this.router.post('/all-gram-panchayat', GlobalMiddleware.checkError, GlobalMiddleware.authenticate, GramPanchayatController.getAllGramPanchayat);
          this.router.post('/create-gram-panchayat', GlobalMiddleware.checkError,GlobalMiddleware.authenticate, GramPanchayatController.createGramPanchayat);
+         this.router.post('/get-taluka-list-by-distict-id', GlobalMiddleware.checkError,GlobalMiddleware.authenticate, GramPanchayatController.GetTalukaListByDistrictId);
     }
 
     deleteRoute() {

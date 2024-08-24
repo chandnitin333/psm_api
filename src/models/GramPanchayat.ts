@@ -127,3 +127,15 @@ export async function findGramPanchayat(params) {
         }
     });
 }
+
+export async function getAllTalukaByDistrict(d_id: number) {
+    return await prisma.taluka.findMany({
+        where: {
+            district_id: d_id
+        },
+        select: {
+            id: true,
+            name: true,
+        }
+    });
+}

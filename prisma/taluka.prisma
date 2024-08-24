@@ -6,4 +6,5 @@ model Taluka {
   updatedAt  DateTime   @updatedAt
   district    District     @relation(fields: [district_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
   grampanchayat Grampanchayat[]
+  gatgrampanchayat Gatgrampanchayat[]
 }

@@ -1,5 +1,5 @@
 
-import { createGramPanchayat, deleteGramPanchayat, findGramPanchayat, getAllGrampanchayat, getGramPanchayat, getGramPanchayatCount, updateGramPanchayat } from '../models/GramPanchayat';
+import { createGramPanchayat, deleteGramPanchayat, findGramPanchayat, getAllGrampanchayat, getAllTalukaByDistrict, getGramPanchayat, getGramPanchayatCount, updateGramPanchayat } from '../models/GramPanchayat';
 import { createTaluka, deleteTaluka, getAllTalukas, getTaluka, getTalukaCount, updateTaluka } from '../models/Taluka';
 import { ApiResponse } from '../utils/ApiResponse';
 export class GramPanchayatController {
@@ -88,6 +88,18 @@ export class GramPanchayatController {
             return response;
         } catch (error) {
             let response = ApiResponse.ErrorResponse(res, "Failed to delete GramPanchayat", error);
+            return response;
+        }
+    }
+
+    static async GetTalukaListByDistrictId(req, res, next) {
+        try {
+            let data = req.body;
+            let taluka = await getAllTalukaByDistrict(parseInt(data.district_id));
+            let response = ApiResponse.successResponseWithData(res, "Taluka fetched successfully", taluka);
+            return response;
+        } catch (error) {
+            let response = ApiResponse.ErrorResponse(res, "Failed to fetch Taluka", error);
             return response;
         }
     }

@@ -36,6 +36,7 @@ model District {
   updatedAt  DateTime   @updatedAt
   talukas Taluka[]
   grampanchayat Grampanchayat[]
+  gatgrampanchayat Gatgrampanchayat[]
 }
 
 model Taluka {
@@ -46,6 +47,7 @@ model Taluka {
   updatedAt  DateTime   @updatedAt
   district    District     @relation(fields: [district_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
   grampanchayat Grampanchayat[]
+  gatgrampanchayat Gatgrampanchayat[]
 }
 
 model Grampanchayat {
@@ -57,4 +59,18 @@ model Grampanchayat {
   updatedAt  DateTime   @updatedAt
   district  District    @relation(fields: [district_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
   taluka    Taluka      @relation(fields:[taluka_id], references:[id], onDelete: Cascade, onUpdate: Cascade)
+  gatgrampanchayat Gatgrampanchayat[]
+}
+
+model Gatgrampanchayat {
+  id    Int    @id @default(autoincrement())
+  name  String
+  district_id Int
+  taluka_id Int
+  grampanchayat_id Int
+  createdAt  DateTime   @default(now())
+  updatedAt  DateTime   @updatedAt
+  district  District    @relation(fields: [district_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  taluka    Taluka      @relation(fields:[taluka_id], references:[id], onDelete: Cascade, onUpdate: Cascade)
+  grampanchayat    Grampanchayat      @relation(fields:[grampanchayat_id], references:[id], onDelete: Cascade, onUpdate: Cascade)
 }

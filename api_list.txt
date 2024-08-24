@@ -29,5 +29,18 @@
 /api/admin/create-gram-panchayat (POST)
 /api/admin/delete-gram-panchayat (DELETE)
 /api/admin/update-gram-panchayat (PUT)
+/api/admin/get-taluka-list-by-distict-id (POST) it is used for when select district then show all the taluka list
+
+#########################################
+
+#########################################
+#######     GAT GRAM PANCHAYAT    #######
+
+/api/admin/get-single-gat-gram-panchayat (GET)
+/api/admin/get-all-gat-gram-panchayat (POST)
+/api/admin/create-gat-gram-panchayat (POST)
+/api/admin/update-gat-gram-panchayat (PUT)
+/api/admin/delete-gat-gram-panchayat (DELETE)
+/api/admin/get-grampanchayat-list-by-taluka-id (POST) it is used for when select taluka then show all the gram panchayat list
 
 #########################################
