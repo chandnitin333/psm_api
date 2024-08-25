@@ -4,9 +4,11 @@ model Gatgrampanchayat {
   district_id Int
   taluka_id Int
   grampanchayat_id Int
-  createdAt  DateTime   @default(now())
-  updatedAt  DateTime   @updatedAt
+  created_at  DateTime   @default(now())
+  updated_at  DateTime   @updatedAt
+  is_delete Int @default(0)
   district  District    @relation(fields: [district_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
   taluka    Taluka      @relation(fields:[taluka_id], references:[id], onDelete: Cascade, onUpdate: Cascade)
   grampanchayat    Grampanchayat      @relation(fields:[grampanchayat_id], references:[id], onDelete: Cascade, onUpdate: Cascade)
+  user User[]
 }

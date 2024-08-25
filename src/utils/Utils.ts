@@ -3,6 +3,9 @@ import multer = require("multer");
 
 
 export class Utils {
+    static hashPassword(password: any) {
+        throw new Error('Method not implemented.');
+    }
     public MAX_TOKEN_TIME = 3600000;
 
     static genericVerificationToken(size = 5) {
@@ -17,7 +20,7 @@ export class Utils {
     }
 
 
-    static async encryptPassword(password) {
+    static async encryptPassword(password:string): Promise<any> {
         return new Promise((resolve, reject) => {
             Bcrypt.hash(password, 10, (async (err, hash) => {
 

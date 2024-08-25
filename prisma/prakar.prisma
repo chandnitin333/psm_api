@@ -1,0 +1,7 @@
+model Prakar {
+  id    Int    @id @default(autoincrement())
+  prakar_name  String @unique
+  is_delete Int @default(0)
+  created_at  DateTime   @default(now())
+  updated_at  DateTime   @updatedAt
+}
