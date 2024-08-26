@@ -57,7 +57,7 @@ export class MalmattaController {
             return  ApiResponse.successResponseWithData(res, "Malmatta fetched successfully", result);
         } catch (error) {
             logger.error(`Error in MalmattaController/getMalmatta: ${error}`);
-            let response = ApiResponse.ErrorResponse(res, "Failed to fetch Milkat vapar", error);
+            let response = ApiResponse.ErrorResponse(res, "Failed to fetch Malmatta", error);
             return response;
         }
     }

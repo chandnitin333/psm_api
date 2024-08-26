@@ -113,3 +113,14 @@
 /api/admin/delete-malmatta/1 (DELETE)
 
 #########################################
+
+#########################################
+#######          TAX              #######
+
+/api/admin/create-tax (POST)
+/api/admin/update-tax (PUT)
+/api/admin/get-all-tax (POST)
+/api/admin/get-single-tax/1 (GET)
+/api/admin/delete-tax/1 (DELETE)
+
+#########################################

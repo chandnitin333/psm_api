@@ -136,3 +136,10 @@ model Malmatta {
   updated_at  DateTime   @updatedAt
   malmatteche_prakar    Malmattecheprakar     @relation(fields: [malmatteche_prakar_id], references: [id])
 }
+model Tax {
+  id    Int    @id @default(autoincrement())
+  tax_name  String @unique
+  is_delete Int @default(0)
+  created_at  DateTime   @default(now())
+  updated_at  DateTime   @updatedAt
+}
