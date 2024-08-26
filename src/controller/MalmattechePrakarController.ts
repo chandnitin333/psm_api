@@ -1,5 +1,5 @@
 import { Logger } from '../logger/Logger';
-import { createMalmattechePrakar, deleteMalmattechePrakar, findMalmattechePrakar, getAllMalmattechePrakars, getMalmattechePrakar, getMalmattechePrakarCount, updateMalmattechePrakar } from '../models/MalmattechePrakar';
+import { createMalmattechePrakar, deleteMalmattechePrakar, findMalmattechePrakar, getAllMalmattechePrakarForDDL, getAllMalmattechePrakars, getMalmattechePrakar, getMalmattechePrakarCount, updateMalmattechePrakar } from '../models/MalmattechePrakar';
 import { ApiResponse } from '../utils/ApiResponse';
 const logger = new Logger().logger;
 
@@ -88,6 +88,18 @@ export class MalmattechePrakarController {
         } catch (error) {
             logger.error(`Error in MalmattechePrakarController/deleteMalmattechePrakar: ${error}`);
             let response = ApiResponse.ErrorResponse(res, "Failed to delete Malmatteche Prakar", error);
+            return response;
+        }
+    }
+
+    static async getAllMalmattechePrakarForDDL(req, res, next) {
+        try {
+            let districts = await getAllMalmattechePrakarForDDL();
+            let response = ApiResponse.successResponseWithData(res, "Malmatteche Prakar fetched successfully", districts);
+            return response;
+        } catch (error) {
+            logger.error(`Error in MalmattechePrakarController/getAllMalmattechePrakarForDDL: ${error}`);
+            let response = ApiResponse.ErrorResponse(res, "Failed to fetch Malmatteche Prakar", error);
             return response;
         }
     }

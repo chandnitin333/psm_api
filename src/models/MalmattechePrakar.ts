@@ -85,3 +85,15 @@ export async function findMalmattechePrakar(params) {
         }
     });
 }
+
+export async function getAllMalmattechePrakarForDDL() {
+     return await prisma.malmattecheprakar.findMany({
+        where: {
+            is_delete: 0
+        },
+        select: {
+            id: true,
+            name: true
+        }
+     });
+}

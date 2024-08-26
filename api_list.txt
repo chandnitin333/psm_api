@@ -88,5 +88,17 @@
 /api/admin/get-all-malmatteche-prakars (POST)
 /api/admin/get-single-malmatteche-prakar/1 (GET)
 /api/admin/delete-malmatteche-prakar/1 (DELETE)
+/api/admin/get-all-malmatteche-prakar-ddl-list (GET)
+
+#########################################
+
+#########################################
+#######    MILKAT VAPAR           #######
+
+/api/admin/create-milkat-vapar (POST)
+/api/admin/update-milkat-vapar (PUT)
+/api/admin/get-all-milkat-vapar (POST)
+/api/admin/get-single-milkat-vapar/3 (GET)
+/api/admin/delete-milkat-vapar/3 (DELETE)
 
 #########################################

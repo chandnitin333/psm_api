@@ -15,7 +15,7 @@ export class malmattechePrakarRoutes {
 
 
     getRoutes() {
-        
+        this.router.get('/get-all-malmatteche-prakar-ddl-list', GlobalMiddleware.checkError, GlobalMiddleware.authenticate, MalmattechePrakarController.getAllMalmattechePrakarForDDL);
         this.router.get('/get-single-malmatteche-prakar/:mal_prakar_id', GlobalMiddleware.checkError, GlobalMiddleware.authenticate, MalmattechePrakarController.getMalmattechePrakar);
     }
 
