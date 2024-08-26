@@ -1,6 +1,5 @@
 import { Router } from "express";
 import { GlobalMiddleware } from "../middleware/GlobalMiddleware";
-import { DistrictController } from "../controller/DistrictController";
 import { FloorController } from "../controller/FloorController";
 
 export class floorRoutes {

@@ -1,5 +1,4 @@
 import { Logger } from '../logger/Logger';
-import { createMalmattechePrakar, deleteMalmattechePrakar, findMalmattechePrakar, getAllMalmattechePrakars, getMalmattechePrakar, getMalmattechePrakarCount, updateMalmattechePrakar } from '../models/MalmattechePrakar';
 import { createMilkatVapar, deleteMilkatVapar, findMilkatVapar, getAllMilkatVapar, getMilkatVapar, getMilkatVaparCount, updateMilkatVapar } from '../models/MilkatVapar';
 import { ApiResponse } from '../utils/ApiResponse';
 const logger = new Logger().logger;

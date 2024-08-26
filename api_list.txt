@@ -102,3 +102,14 @@
 /api/admin/delete-milkat-vapar/3 (DELETE)
 
 #########################################
+
+#########################################
+#######          MALMATTA         #######
+
+/api/admin/create-malmatta (POST)
+/api/admin/update-malmatta (PUT)
+/api/admin/get-all-malmatta (POST)
+/api/admin/get-single-malmatta/1 (GET)
+/api/admin/delete-malmatta/1 (DELETE)
+
+#########################################

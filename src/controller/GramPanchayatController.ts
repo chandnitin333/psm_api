@@ -1,6 +1,5 @@
 
 import { createGramPanchayat, deleteGramPanchayat, findGramPanchayat, getAllGrampanchayat, getAllTalukaByDistrict, getGramPanchayat, getGramPanchayatCount, updateGramPanchayat } from '../models/GramPanchayat';
-import { createTaluka, deleteTaluka, getAllTalukas, getTaluka, getTalukaCount, updateTaluka } from '../models/Taluka';
 import { ApiResponse } from '../utils/ApiResponse';
 export class GramPanchayatController {
 
