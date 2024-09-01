@@ -2,5 +2,18 @@ model User {
   id    Int    @id @default(autoincrement())
   name  String
   email String @unique
-  posts Post[] // Add this line to establish the opposite relation
+  username String
+  district_id Int
+  taluka_id Int
+  grampanchayat_id Int
+  gatgrampanchayat_id Int
+  password String
+  is_active Int @default(0)
+  is_delete Int @default(0)
+  created_at  DateTime   @default(now())
+  updated_at  DateTime   @updatedAt
+  district  District    @relation(fields: [district_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  taluka    Taluka      @relation(fields:[taluka_id], references:[id], onDelete: Cascade, onUpdate: Cascade)
+  grampanchayat    Grampanchayat      @relation(fields:[grampanchayat_id], references:[id], onDelete: Cascade, onUpdate: Cascade)
+  gatgrampanchayat    Gatgrampanchayat      @relation(fields:[gatgrampanchayat_id], references:[id], onDelete: Cascade, onUpdate: Cascade)
 }

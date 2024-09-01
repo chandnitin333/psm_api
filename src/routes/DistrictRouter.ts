@@ -17,7 +17,6 @@ export class districtRoutes {
     getRoutes() {
         
         this.router.get('/get-single-district', GlobalMiddleware.checkError, GlobalMiddleware.authenticate, DistrictController.getDistrict);
-        // this.router.get('/districts', DistrictController.getAllDistricts);
         this.router.get('/districts_ddl', GlobalMiddleware.checkError, GlobalMiddleware.authenticate, DistrictController.getAllDistrictForDDL);
     }
 

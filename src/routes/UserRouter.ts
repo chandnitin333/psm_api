@@ -15,36 +15,22 @@ export class userRoutes {
 
 
     getRoutes() {
-
-        // this.router.get('/signup',UserValidator.validSignUp(),GlobalMiddleware.checkError,UserController.signUp);
-        // this.router.get('/tutorials', TuterialController.getTuterial);
-
-        // this.router.get('/tutorials/:id', TuterialController.getTutDetailsById);
-        this.router.get('/users', GlobalMiddleware.checkError, GlobalMiddleware.authenticate, UserController.getAllUsers);
-
-
+        this.router.get('/get-signle-user/:userId', GlobalMiddleware.checkError, GlobalMiddleware.authenticate, UserController.getSingleUser);
     }
 
 
     postRoutes() {
         this.router.post('/users', GlobalMiddleware.checkError, GlobalMiddleware.authenticate, UserController.getAllUsers);
-        this.router.post('/signup', UserController.signUp);
-        // this.router.post('/signup', UserValidator.validSignUp(), GlobalMiddleware.checkError, UserController.signUp);
-        // this.router.post('/login', UserValidator.loginVerify(), GlobalMiddleware.checkError, UserController.login);
-
-        // this.router.post('/post', upload.array("mediafile"), UserValidator.postVerify(), GlobalMiddleware.checkError, PostController.newPost);
-        this.router.get('/test', () => {
-        });
+        this.router.post('/create-new-user', GlobalMiddleware.checkError, GlobalMiddleware.authenticate, UserController.createNewUser);
         this.router.post('/login', UserController.login);
-
+        this.router.post('/get-gat-grampanchayat-list-by-grampanchayat-id', GlobalMiddleware.checkError, GlobalMiddleware.authenticate, UserController.getGatGrampanchayatByGrampachayatId);
     }
 
     deleteRoute() {
-
+        this.router.delete('/delete-signle-user/:userId', GlobalMiddleware.checkError, GlobalMiddleware.authenticate, UserController.deleteUser);
     }
     putRoute() {
-
-
+        this.router.put('/update-user', GlobalMiddleware.checkError, GlobalMiddleware.authenticate, UserController.updateUser);
     }
 }
 

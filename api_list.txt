@@ -44,3 +44,83 @@
 /api/admin/get-grampanchayat-list-by-taluka-id (POST) it is used for when select taluka then show all the gram panchayat list
 
 #########################################
+
+#########################################
+#######           USERS           #######
+
+/api/user/create-new-user (POST)
+/api/user/update-user (PUT)
+/api/user/users (POST)
+/api/user/get-signle-user/1 (GET)
+/api/user/delete-signle-user/1 (DELETE)
+/api/user/login (POST)
+/api/admin/get-gat-grampanchayat-list-by-grampanchayat-id () it is used for when select gram panchayat then show all the gatgrampanchayat list
+
+#########################################
+
+#########################################
+#######           FLOOR           #######
+
+/api/admin/create-floor (POST)
+/api/admin/update-floor (PUT)
+/api/admin/get-all-floors (POST)
+/api/admin/get-single-floor/1 (GET)
+/api/admin/delete-floor/1 (DELETE)
+
+#########################################
+
+#########################################
+#######           PRAKAR          #######
+
+/api/admin/create-prakar (POST)
+/api/admin/update-prakar (PUT)
+/api/admin/get-all-prakars (POST)
+/api/admin/get-single-prakar/1 (GET)
+/api/admin/delete-prakar/1 (DELETE)
+
+#########################################
+
+#########################################
+#######     MALMATTECHE PRAKAR    #######
+
+/api/admin/create-malmatteche-prakar (POST)
+/api/admin/update-malmatteche-prakar (PUT)
+/api/admin/get-all-malmatteche-prakars (POST)
+/api/admin/get-single-malmatteche-prakar/1 (GET)
+/api/admin/delete-malmatteche-prakar/1 (DELETE)
+/api/admin/get-all-malmatteche-prakar-ddl-list (GET)
+
+#########################################
+
+#########################################
+#######    MILKAT VAPAR           #######
+
+/api/admin/create-milkat-vapar (POST)
+/api/admin/update-milkat-vapar (PUT)
+/api/admin/get-all-milkat-vapar (POST)
+/api/admin/get-single-milkat-vapar/3 (GET)
+/api/admin/delete-milkat-vapar/3 (DELETE)
+
+#########################################
+
+#########################################
+#######          MALMATTA         #######
+
+/api/admin/create-malmatta (POST)
+/api/admin/update-malmatta (PUT)
+/api/admin/get-all-malmatta (POST)
+/api/admin/get-single-malmatta/1 (GET)
+/api/admin/delete-malmatta/1 (DELETE)
+
+#########################################
+
+#########################################
+#######          TAX              #######
+
+/api/admin/create-tax (POST)
+/api/admin/update-tax (PUT)
+/api/admin/get-all-tax (POST)
+/api/admin/get-single-tax/1 (GET)
+/api/admin/delete-tax/1 (DELETE)
+
+#########################################

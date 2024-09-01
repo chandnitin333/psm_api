@@ -9,6 +9,13 @@ import DistrictRouter from "./routes/DistrictRouter";
 import TalukaRouter from "./routes/TalukaRouter";
 import GrampanchayatRouter from "./routes/GrampanchayatRouter";
 import GatgrampanchayatRouter from "./routes/GatgrampanchayatRouter";
+import FloorRouter from "./routes/FloorRouter";
+import PrakarRouter from "./routes/PrakarRouter";
+import MalmattechePrakarRouter, { malmattechePrakarRoutes } from "./routes/MalmattechePrakarRouter";
+import MilkatVaparRouter from "./routes/MilkatVaparRouter";
+import MalmattaRouter from "./routes/MalmattaRouter";
+import TaxRouter from "./routes/TaxRouter";
+import OthertaxRouter from "./routes/Othertax.Router";
 // import fileUpload = require("express-fileupload")
 
 
@@ -37,7 +44,7 @@ export class Server {
         // this.app.use('/api/district/', DistrictRouter);
         // this.app.use('/api/taluka/', TalukaRouter);
         // this.app.use('/api/gram-panchayat/', GrampanchayatRouter);
-        this.app.use('/api/admin/', [DistrictRouter, TalukaRouter, GrampanchayatRouter, GatgrampanchayatRouter]);
+        this.app.use('/api/admin/', [DistrictRouter, TalukaRouter, GrampanchayatRouter, GatgrampanchayatRouter, FloorRouter, PrakarRouter, MalmattechePrakarRouter, MilkatVaparRouter, MalmattaRouter, TaxRouter, OthertaxRouter]);
     }
 
 

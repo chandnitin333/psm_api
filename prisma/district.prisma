@@ -1,9 +1,13 @@
 model District {
   id    Int    @id @default(autoincrement())
   name  String @unique
-  createdAt  DateTime   @default(now())
-  updatedAt  DateTime   @updatedAt
+  created_at  DateTime   @default(now())
+  updated_at  DateTime   @updatedAt
+  is_delete Int @default(0)
   talukas Taluka[]
   grampanchayat Grampanchayat[]
   gatgrampanchayat Gatgrampanchayat[]
+  user User[]
+  othertax Othertax[]
 }
+
