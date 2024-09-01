@@ -50,7 +50,9 @@ model District {
   grampanchayat Grampanchayat[]
   gatgrampanchayat Gatgrampanchayat[]
   user User[]
+  othertax Othertax[]
 }
+
 
 model Taluka {
   id    Int    @id @default(autoincrement())
@@ -63,6 +65,7 @@ model Taluka {
   grampanchayat Grampanchayat[]
   gatgrampanchayat Gatgrampanchayat[]
   user User[]
+  othertax Othertax[]
 }
 
 model Grampanchayat {
@@ -77,6 +80,7 @@ model Grampanchayat {
   taluka    Taluka      @relation(fields:[taluka_id], references:[id], onDelete: Cascade, onUpdate: Cascade)
   gatgrampanchayat Gatgrampanchayat[]
   user User[]
+  othertax Othertax[]
 }
 
 model Gatgrampanchayat {
@@ -142,4 +146,17 @@ model Tax {
   is_delete Int @default(0)
   created_at  DateTime   @default(now())
   updated_at  DateTime   @updatedAt
+}
+model Othertax {
+  id    Int    @id @default(autoincrement())
+  district_id Int
+  taluka_id Int
+  grampanchayat_id Int
+  tax_details String @db.Text
+  created_at  DateTime   @default(now())
+  updated_at  DateTime   @updatedAt
+  is_delete Int @default(0)
+  district  District    @relation(fields: [district_id], references: [id])
+  taluka    Taluka      @relation(fields:[taluka_id], references:[id])
+  grampanchayat    Grampanchayat      @relation(fields:[grampanchayat_id], references:[id])
 }

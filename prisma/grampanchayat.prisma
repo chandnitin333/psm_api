@@ -10,4 +10,5 @@ model Grampanchayat {
   taluka    Taluka      @relation(fields:[taluka_id], references:[id], onDelete: Cascade, onUpdate: Cascade)
   gatgrampanchayat Gatgrampanchayat[]
   user User[]
+  othertax Othertax[]
 }

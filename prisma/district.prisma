@@ -8,4 +8,6 @@ model District {
   grampanchayat Grampanchayat[]
   gatgrampanchayat Gatgrampanchayat[]
   user User[]
+  othertax Othertax[]
 }
+

@@ -9,4 +9,5 @@ model Taluka {
   grampanchayat Grampanchayat[]
   gatgrampanchayat Gatgrampanchayat[]
   user User[]
+  othertax Othertax[]
 }
