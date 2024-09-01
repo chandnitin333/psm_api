@@ -1,7 +1,6 @@
 
 import { validationResult } from "express-validator";
 import * as jwt from 'jsonwebtoken';
-import { getEnvironmentVariable } from "../environments/env";
 
 import multer = require('multer');
 
@@ -24,8 +23,8 @@ export class GlobalMiddleware {
         }
         try {
             req.errorStatus = 401;
-            jwt.verify(token, getEnvironmentVariable().JWT_SECRET, ((err, decoded) => {
-               
+            jwt.verify(token, process.env.JWT_SECRET, ((err, decoded) => {
+
                 if (err) {
                     next(err);
                 } else if (!decoded) {
