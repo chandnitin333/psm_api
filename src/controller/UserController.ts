@@ -1,6 +1,6 @@
 
 import * as Jwt from 'jsonwebtoken';
-import { getEnvironmentVariable } from '../environments/env';
+
 import { Logger } from '../logger/Logger';
 import { getAdminUser } from '../models/adminUser';
 import { createUser, deleteUser, getAllUsers, getGatGramPanchayatByGrampanhayatId, getUser, getUsersCount, updateUser } from '../models/Users';
@@ -9,11 +9,11 @@ import { Utils } from '../utils/Utils';
 const logger = new Logger().logger;
 export class UserController {
 
-     static async createNewUser(req, res, next) {
+    static async createNewUser(req, res, next) {
         try {
-            let { district_id, taluka_id, grampanchayat_id, gatgrampanchayat_id,name, email, username, pwd } = req.body;
+            let { district_id, taluka_id, grampanchayat_id, gatgrampanchayat_id, name, email, username, pwd } = req.body;
             let password = await Utils.encryptPassword(pwd);
-            let user: any = await createUser(district_id, taluka_id, grampanchayat_id, gatgrampanchayat_id,name, email, username, password);
+            let user: any = await createUser(district_id, taluka_id, grampanchayat_id, gatgrampanchayat_id, name, email, username, password);
             let response = ApiResponse.successResponse(res, "User created successfully");
             return response;
         } catch (error) {
@@ -31,7 +31,7 @@ export class UserController {
 
     static async getAllUsers(req, res, next) {
         try {
-            let offset:any = process.env.PAGE_OFFSET || 0;
+            let offset: any = process.env.PAGE_OFFSET || 0;
             let pageNumber = (req.body?.pageNumber ?? 1) - 1;
             let searchText = req.body.searchText ?? "";
             let limit = (pageNumber != 0) ? pageNumber * offset : pageNumber;
@@ -42,7 +42,7 @@ export class UserController {
             }
             let users = await getAllUsers(params);
             let totalCount = (searchText == '') ? await getUsersCount() : Object.keys(users).length;
-            let response = ApiResponse.successResponseWithData(res, "Users fetched successfully",  { users, totalCount: totalCount });
+            let response = ApiResponse.successResponseWithData(res, "Users fetched successfully", { users, totalCount: totalCount });
             return response;
         } catch (error) {
             let response = ApiResponse.ErrorResponse(res, "Failed to fetch users", error);
@@ -74,7 +74,7 @@ export class UserController {
                         username: user?.username
                     }
 
-                    const token = Jwt.sign(data, getEnvironmentVariable().JWT_SECRET, { expiresIn: '1h' });
+                    const token = Jwt.sign(data, process.env.JWT_SECRET, { expiresIn: '1h' });
 
                     const respData = {
                         token: token
@@ -110,11 +110,11 @@ export class UserController {
             let data = req.body;
             console.log(data);
             let body = {
-                name: data.name, 
-                email: data.email, 
-                district_id: data.district_id, 
-                taluka_id: data.taluka_id, 
-                grampanchayat_id: data.grampanchayat_id, 
+                name: data.name,
+                email: data.email,
+                district_id: data.district_id,
+                taluka_id: data.taluka_id,
+                grampanchayat_id: data.grampanchayat_id,
                 gatgrampanchayat_id: data.gatgrampanchayat_id,
                 username: data.username
             };
