@@ -124,3 +124,15 @@
 /api/admin/delete-tax/1 (DELETE)
 
 #########################################
+
+#########################################
+#######        OTHER TAX          #######
+
+/api/admin/api/admin/create-other-tax (POST)
+/api/admin/update-other-tax (PUT)
+/api/admin/get-all-other-tax (POST)
+/api/admin/get-single-other-tax/2 (GET)
+/api/admin/delete-complete-other-tax/2 (DELETE)
+/api/admin/delete-tax-details (PUT)
+
+#########################################

@@ -1,9 +1,9 @@
 
 import prisma from '../config/conn';
 
-export async function createOtherTax( district_id: number, taluka_id: number, grampanchayat_id: number, tax_details: string) {
+export async function createOtherTax( district_id: number, taluka_id: number, grampanchayat_id: number, tax_details: string[]) {
     return await prisma.othertax.create({
-        data: { district_id, taluka_id, grampanchayat_id,tax_details }
+        data: { district_id, taluka_id, grampanchayat_id, tax_details: tax_details.join(", ") }
     });
 }
 
@@ -64,10 +64,14 @@ export async function getAllOtherTax(params) {
     });
 }
 
-export async function getOtherTax(gpid: number) {
-    const gat_grampanchayat_data = await prisma.gatgrampanchayat.findUnique({
-        where: { id: gpid },
+export async function getOtherTax(id: number) {
+    const output = await prisma.othertax.findUnique({
+        where: { id: id },
         include:{
+            // Remove the 'select' property
+            // Remove the 'tax_details' property
+            // tax_details: true,
+            // is_delete: true,
             district:{
                 select: {
                     id: true,
@@ -88,61 +92,90 @@ export async function getOtherTax(gpid: number) {
             }
         }
     });
-    return gat_grampanchayat_data;
+    return output;
 }
 
-export async function updateOtherTax(gpid: number, data: { name?: string; district_id?: number; taluka_id?: number; grampanchayat_id?: number }) {  
-            const gat_grampanchayat_data = await prisma.gatgrampanchayat.update({
-                where: { id: gpid },
-                data,
+export async function updateOtherTax(id: number, data: { district_id?: number; taluka_id?: number; grampanchayat_id?: number; tax_details?: string[] }) {  
+    const result = await prisma.othertax.update({
+        where: { id: id },
+        data: {
+            district_id: data.district_id,
+            taluka_id: data.taluka_id,
+            grampanchayat_id: data.grampanchayat_id,
+            tax_details: data.tax_details?.join(", ")
+        },
+        select: {
+            id: true,
+            district_id: true,
+            taluka_id: true,
+            grampanchayat_id: true,
+            tax_details: true,
+            is_delete: true,
+            district: {
                 select: {
                     id: true,
-                    name: true,
-                    district_id: true,
-                    taluka_id: true,
-                    district: {
-                        select: {
-                            id: true,
-                            name: true
-                        }
-                    },
-                    taluka: {
-                        select: {
-                            id: true,
-                            name: true
-                        }
-                    },
-                    grampanchayat: {
-                        select: {
-                            id: true,
-                            name: true
-                        }
-                    }
+                    name: true
                 }
-            });
-            return gat_grampanchayat_data;
+            },
+            taluka: {
+                select: {
+                    id: true,
+                    name: true
+                }
+            },
+            grampanchayat: {
+                select: {
+                    id: true,
+                    name: true
+                }
+            }
         }
-
-export async function deleteOtherTax(gpid: number) {
-    const grampanchayat_data = await prisma.gatgrampanchayat.delete({
-        where: { id: gpid },
     });
-    return grampanchayat_data;
+    return result;
+}
+
+export async function deleteOtherTax(id: number) {
+    const result = await prisma.othertax.update({
+        where: { id: id },
+        data:{is_delete:1},
+        select: {
+            id: true,
+            district_id: true,
+            taluka_id: true,
+            grampanchayat_id: true,
+            tax_details: true,
+            is_delete: true,
+            district: {
+                select: {
+                    id: true,
+                    name: true
+                }
+            },
+            taluka: {
+                select: {
+                    id: true,
+                    name: true
+                }
+            },
+            grampanchayat: {
+                select: {
+                    id: true,
+                    name: true
+                }
+            }
+        }
+    });
+    return result;
 }
 
 export async function getOtherTaxCount() {
-    const count = await prisma.gatgrampanchayat.count();
+    const count = await prisma.othertax.count();
     return count;
 }
 
 export async function findOtherTax(params) {
-    return await prisma.gatgrampanchayat.findMany({
+    return await prisma.othertax.findMany({
         where: {
-            ...(params.searchText && {
-                name: {
-                    contains: params.searchText
-                }
-            }),
             ...(params.d_id && {
                 district_id: params.d_id
             }),
@@ -154,4 +187,40 @@ export async function findOtherTax(params) {
             })
         }
     });
+}
+
+export async function updateTaxDetailsx(id: number, data: { tax_details?: string[] }) {  
+    const result = await prisma.othertax.update({
+        where: { id: id },
+        data: {
+            tax_details: data.tax_details?.join(", ")
+        },
+        select: {
+            id: true,
+            district_id: true,
+            taluka_id: true,
+            grampanchayat_id: true,
+            tax_details: true,
+            is_delete: true,
+            district: {
+                select: {
+                    id: true,
+                    name: true
+                }
+            },
+            taluka: {
+                select: {
+                    id: true,
+                    name: true
+                }
+            },
+            grampanchayat: {
+                select: {
+                    id: true,
+                    name: true
+                }
+            }
+        }
+    });
+    return result;
 }

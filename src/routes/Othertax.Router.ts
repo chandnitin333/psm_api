@@ -1,6 +1,7 @@
 import { Router } from "express";
 import { GlobalMiddleware } from "../middleware/GlobalMiddleware";
 import { GatGramPanchayatController } from "../controller/GatGramPanchayatController";
+import { othertaxController } from "../controller/OtherTaxController";
 
 export class othertaxRoutes {
     public router: Router;
@@ -14,19 +15,20 @@ export class othertaxRoutes {
     }
 
     getRoutes() {
-        this.router.get('/get-single-other-tax', GlobalMiddleware.checkError, GlobalMiddleware.authenticate,GatGramPanchayatController.getGatGramPanchayat);
+        this.router.get('/get-single-other-tax/:id', GlobalMiddleware.checkError, GlobalMiddleware.authenticate,othertaxController.getOtherTax);
     }
 
     postRoutes() {
-         this.router.post('/get-all-other-tax', GlobalMiddleware.checkError, GlobalMiddleware.authenticate, GatGramPanchayatController.getAllGatGramPanchayat);
-         this.router.post('/create-other-tax', GlobalMiddleware.checkError,GlobalMiddleware.authenticate, GatGramPanchayatController.createGatGramPanchayat);
+         this.router.post('/get-all-other-tax', GlobalMiddleware.checkError, GlobalMiddleware.authenticate, othertaxController.getAllOtherTax);
+         this.router.post('/create-other-tax', GlobalMiddleware.checkError,GlobalMiddleware.authenticate, othertaxController.createOthertax);
     }
 
     deleteRoute() {
-        this.router.delete('/delete-other-tax', GlobalMiddleware.checkError,GlobalMiddleware.authenticate, GatGramPanchayatController.deleteGatGramPanchayat);
+        this.router.delete('/delete-complete-other-tax/:id', GlobalMiddleware.checkError,GlobalMiddleware.authenticate, othertaxController.deleteCompleteOtherTax);
     }
     putRoute() {
-        this.router.put('/update-other-tax', GlobalMiddleware.checkError,GlobalMiddleware.authenticate, GatGramPanchayatController.updateGatGramPanchayat);
+        this.router.put('/update-other-tax', GlobalMiddleware.checkError,GlobalMiddleware.authenticate, othertaxController.updateOtherTax);
+        this.router.put('/delete-tax-details', GlobalMiddleware.checkError,GlobalMiddleware.authenticate, othertaxController.deleteSingleTaxDetails);
     }
 }
 
