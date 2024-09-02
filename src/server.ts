@@ -1,21 +1,21 @@
 
 import bodyParser = require("body-parser");
 import express from 'express';
-import * as mongoose from 'mongoose';
-import { getEnvironmentVariable,setEnvironmentVariables } from './environments/env';
+import DistrictRouter from "./routes/DistrictRouter";
+import FloorRouter from "./routes/FloorRouter";
+import GatgrampanchayatRouter from "./routes/GatgrampanchayatRouter";
+import GrampanchayatRouter from "./routes/GrampanchayatRouter";
+import MalmattaRouter from "./routes/MalmattaRouter";
+import MalmattechePrakarRouter from "./routes/MalmattechePrakarRouter";
+import MilkatVaparRouter from "./routes/MilkatVaparRouter";
+import OthertaxRouter from "./routes/Othertax.Router";
+import PrakarRouter from "./routes/PrakarRouter";
+import TalukaRouter from "./routes/TalukaRouter";
+import TaxRouter from "./routes/TaxRouter";
 import userRoutes from './routes/UserRouter';
 import cors = require('cors');
-import DistrictRouter from "./routes/DistrictRouter";
-import TalukaRouter from "./routes/TalukaRouter";
-import GrampanchayatRouter from "./routes/GrampanchayatRouter";
-import GatgrampanchayatRouter from "./routes/GatgrampanchayatRouter";
-import FloorRouter from "./routes/FloorRouter";
-import PrakarRouter from "./routes/PrakarRouter";
-import MalmattechePrakarRouter, { malmattechePrakarRoutes } from "./routes/MalmattechePrakarRouter";
-import MilkatVaparRouter from "./routes/MilkatVaparRouter";
-import MalmattaRouter from "./routes/MalmattaRouter";
-import TaxRouter from "./routes/TaxRouter";
-import OthertaxRouter from "./routes/Othertax.Router";
+const dotenv = require('dotenv');
+dotenv.config();
 // import fileUpload = require("express-fileupload")
 
 
@@ -23,12 +23,12 @@ import OthertaxRouter from "./routes/Othertax.Router";
 export class Server {
     public app: express.Application = express();
     constructor() {
-       
+
         this.configBodyParser();
         this.setRoutes();
         this.error404Handler();
         this.handleErrors();
-        setEnvironmentVariables();
+        // setEnvironmentVariables();
     }
 
 
