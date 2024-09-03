@@ -36,7 +36,7 @@ export class TalukaController {
                 pageNumber: limit,
                 searchText: searchText
             }
-            console.log(params);
+
 
             let talukas = await getAllTalukas(params);
             let totalCount = (searchText == '') ? await getTalukaCount() : Object.keys(talukas).length;
