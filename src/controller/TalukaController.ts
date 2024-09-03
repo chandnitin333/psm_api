@@ -5,7 +5,7 @@ export class TalukaController {
 
     static async createTaluka(req, res, next) {
         try {
-           
+
             let { name, district_id } = req.body;
             let params = {
                 id: parseInt(district_id),
@@ -30,12 +30,14 @@ export class TalukaController {
             let offset: number = parseInt(process.env.PAGE_OFFSET) || 0;
             let pageNumber = (req.body?.pageNumber ?? 1) - 1;
             let searchText = req.body?.searchText ?? "";
-            let limit = (pageNumber != 0) ? pageNumber * offset : pageNumber;
 
+            let limit = (pageNumber != 0) ? pageNumber * offset : pageNumber;
             let params = {
                 pageNumber: limit,
                 searchText: searchText
             }
+            console.log(params);
+
             let talukas = await getAllTalukas(params);
             let totalCount = (searchText == '') ? await getTalukaCount() : Object.keys(talukas).length;
             let response = ApiResponse.successResponseWithData(res, "Taluka fetched successfully", { talukas, totalCount: totalCount });

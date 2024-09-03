@@ -1,4 +1,5 @@
 
+import { env } from 'process';
 import prisma from '../config/conn';
 /**
  * Function to check if a taluka exists by name.
@@ -19,6 +20,7 @@ export async function createTaluka(name: string, district_id: number) {
  * @returns A promise that resolves to an array of taluka.
  */
 export async function getAllTalukas(params) {
+
     return await prisma.taluka.findMany({
         where: {
             ...(params.searchText && {
@@ -27,19 +29,20 @@ export async function getAllTalukas(params) {
                 }
             })
         },
-        take: params?.limit || 10,
-        skip: params?.pageNumber || 0,
-         orderBy: {
-            id: 'desc'
-        },
-        include:{
-            district:{
+
+        include: {
+            district: {
                 select: {
                     id: true,
                     name: true
                 }
             }
-        }
+        },
+        take: parseInt(env.PAGE_OFFSET || '10'),
+        skip: params?.pageNumber || 0,
+        orderBy: {
+            id: 'desc'
+        },
     });
 }
 
@@ -52,8 +55,8 @@ export async function getAllTalukas(params) {
 export async function getTaluka(talukaId: number) {
     const taluka = await prisma.taluka.findUnique({
         where: { id: talukaId },
-        include:{
-            district:{
+        include: {
+            district: {
                 select: {
                     id: true,
                     name: true
@@ -69,7 +72,7 @@ export async function updateTaluka(talukaId: number, data: { name?: string; dist
     const taluka = await prisma.taluka.update({
         where: { id: talukaId },
         data,
-        select:{
+        select: {
             id: true,
             name: true,
             district_id: true
