@@ -10,4 +10,5 @@ model Taluka {
   gatgrampanchayat Gatgrampanchayat[]
   user User[]
   othertax Othertax[]
+  annual_tax Annual_tax[]
 }

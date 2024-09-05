@@ -1,3 +1,5 @@
+Admin panel demo URL: https://www.awesomescreenshot.com/video/30560669?key=0e2855b983e658e8083ce615e74700a1
+
 #########################################
 #######        DISTRICT           #######
 
@@ -134,5 +136,17 @@
 /api/admin/get-single-other-tax/2 (GET)
 /api/admin/delete-complete-other-tax/2 (DELETE)
 /api/admin/delete-tax-details (PUT)
+
+#########################################
+
+#########################################
+#######        ANNUAL TAX         #######
+
+/api/admin/api/admin/create-annual-tax (POST)
+/api/admin/update-annual-tax-rates (PUT)
+/api/admin/get-all-annual-tax (POST)
+/api/admin/get-single-annual-tax/6 (GET)
+/api/admin/delete-complete-annual-tax/6 (DELETE)
+/api/admin/delete-annual-tax-rates/1 (DELETE)
 
 #########################################

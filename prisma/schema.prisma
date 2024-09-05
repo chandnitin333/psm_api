@@ -51,6 +51,7 @@ model District {
   gatgrampanchayat Gatgrampanchayat[]
   user User[]
   othertax Othertax[]
+  annual_tax Annual_tax[]
 }
 
 
@@ -66,6 +67,7 @@ model Taluka {
   gatgrampanchayat Gatgrampanchayat[]
   user User[]
   othertax Othertax[]
+  annual_tax Annual_tax[]
 }
 
 model Grampanchayat {
@@ -81,6 +83,7 @@ model Grampanchayat {
   gatgrampanchayat Gatgrampanchayat[]
   user User[]
   othertax Othertax[]
+  annual_tax Annual_tax[]
 }
 
 model Gatgrampanchayat {
@@ -96,6 +99,7 @@ model Gatgrampanchayat {
   taluka    Taluka      @relation(fields:[taluka_id], references:[id], onDelete: Cascade, onUpdate: Cascade)
   grampanchayat    Grampanchayat      @relation(fields:[grampanchayat_id], references:[id], onDelete: Cascade, onUpdate: Cascade)
   user User[]
+  annual_tax Annual_tax[]
 }
 
 model Floor {
@@ -119,7 +123,7 @@ model Malmattecheprakar {
   created_at  DateTime   @default(now())
   updated_at  DateTime   @updatedAt
   milkar_vapar Milkar_vapar[]
-  malmatta Malmatta[]
+  annual_tax_additional Annual_tax_additional[]
 }
 model Milkar_vapar {
   id    Int    @id @default(autoincrement())
@@ -134,11 +138,11 @@ model Milkar_vapar {
 model Malmatta {
   id    Int    @id @default(autoincrement())
   milkateche_varnan  String
-  malmatteche_prakar_id Int
+  malmatteche_prakar_name String
   is_delete Int @default(0)
   created_at  DateTime   @default(now())
   updated_at  DateTime   @updatedAt
-  malmatteche_prakar    Malmattecheprakar     @relation(fields: [malmatteche_prakar_id], references: [id])
+  annual_tax_additional Annual_tax_additional[]
 }
 model Tax {
   id    Int    @id @default(autoincrement())
@@ -159,4 +163,39 @@ model Othertax {
   district  District    @relation(fields: [district_id], references: [id])
   taluka    Taluka      @relation(fields:[taluka_id], references:[id])
   grampanchayat    Grampanchayat      @relation(fields:[grampanchayat_id], references:[id])
+}
+
+model Annual_tax {
+    id    Int    @id @default(autoincrement())
+    district_id Int
+    taluka_id Int
+    grampanchayat_id Int
+    gat_grampanchayat_id Int
+    created_at  DateTime   @default(now())
+    updated_at  DateTime   @updatedAt
+    is_delete Int @default(0)
+
+    district  District    @relation(fields: [district_id], references: [id])
+    taluka    Taluka      @relation(fields:[taluka_id], references:[id])
+    grampanchayat    Grampanchayat      @relation(fields:[grampanchayat_id], references:[id])
+    gat_grampanchayat    Gatgrampanchayat      @relation(fields:[gat_grampanchayat_id], references:[id])
+    annual_tax_additional Annual_tax_additional[]
+    
+}
+
+model Annual_tax_additional {
+    id    Int    @id @default(autoincrement())
+    annual_tax_id Int
+    malmatteche_prakar_id Int
+    malmatteche_varnan_id Int
+    annual_rate Int
+    aakarani_dar Float
+    created_at  DateTime   @default(now())
+    updated_at  DateTime   @updatedAt
+    is_delete Int @default(0)
+    
+    annual_tax Annual_tax   @relation(fields:[annual_tax_id], references:[id])
+    malmatta    Malmatta    @relation(fields:[malmatteche_prakar_id], references:[id])
+    malmatteche_prakar  Malmattecheprakar   @relation(fields:[malmatteche_varnan_id], references:[id])
+    
 }

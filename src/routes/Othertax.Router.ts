@@ -1,6 +1,5 @@
 import { Router } from "express";
 import { GlobalMiddleware } from "../middleware/GlobalMiddleware";
-import { GatGramPanchayatController } from "../controller/GatGramPanchayatController";
 import { othertaxController } from "../controller/OtherTaxController";
 
 export class othertaxRoutes {
