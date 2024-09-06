@@ -1,9 +1,9 @@
 model Malmatta {
   id    Int    @id @default(autoincrement())
   milkateche_varnan  String
-  malmatteche_prakar_id Int
+  malmatteche_prakar_name String
   is_delete Int @default(0)
   created_at  DateTime   @default(now())
   updated_at  DateTime   @updatedAt
-  malmatteche_prakar    Malmattecheprakar     @relation(fields: [malmatteche_prakar_id], references: [id])
+  annual_tax_additional Annual_tax_additional[]
 }

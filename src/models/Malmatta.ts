@@ -1,9 +1,9 @@
 
 import prisma from '../config/conn';
 
-export async function createMalmatta(milkateche_varnan: string, malmatteche_prakar_id: number) {
+export async function createMalmatta(milkateche_varnan: string, malmatteche_prakar_name: string) {
     return await prisma.malmatta.create({
-        data: { milkateche_varnan, malmatteche_prakar_id }
+        data: { milkateche_varnan, malmatteche_prakar_name }
     });
 }
 
@@ -20,14 +20,8 @@ export async function getAllMalmatta(params) {
         select: {
             id: true,
             milkateche_varnan: true,
-            malmatteche_prakar_id: true,
-            is_delete: true,
-            malmatteche_prakar: { 
-                select: {
-                    id: true,
-                    name: true
-                }
-            }
+            malmatteche_prakar_name: true,
+            is_delete: true
         },
         take: params?.limit || parseInt(process.env.PAGE_OFFSET) || 0,
         skip: params?.pageNumber || 0,
@@ -44,33 +38,21 @@ export async function getMalmatta(malmatta_id: number) {
         select: {
             id: true,
             milkateche_varnan: true,
-            malmatteche_prakar_id: true,
-            is_delete: true,
-            malmatteche_prakar: { 
-                select: {
-                    id: true,
-                    name: true
-                }
-            }
+            malmatteche_prakar_name: true,
+            is_delete: true
         },
     });
     return result;
 }
 
-export async function updateMalmatta(id: number, data: { milkateche_varnan?: string; malmatteche_prakar_id: number }) {
+export async function updateMalmatta(id: number, data: { milkateche_varnan?: string; malmatteche_prakar_name: string }) {
     const result = await prisma.malmatta.update({
         where: { id: id, is_delete: 0 },
         data,
         select: {
             id: true,
             milkateche_varnan: true,
-            is_delete: true,
-             malmatteche_prakar: { 
-                select: {
-                    id: true,
-                    name: true
-                }
-            }
+            is_delete: true
         },
     });
     return result;
@@ -83,14 +65,8 @@ export async function deleteMalmatta(malmatta_id: number) {
         select: {
             id: true,
             milkateche_varnan: true,
-            malmatteche_prakar_id: true,
-            is_delete: true,
-            malmatteche_prakar: { 
-                select: {
-                    id: true,
-                    name: true
-                }
-            }
+            malmatteche_prakar_name: true,
+            is_delete: true
         },
     });
     return result;
@@ -113,9 +89,9 @@ export async function findMalmatta(params) {
                     equals: params.searchText
                 }
             }),
-            ...(params.malmatteche_prakar_id && {
-                malmatteche_prakar_id: {
-                    equals: params.malmatteche_prakar_id
+            ...(params.malmatteche_prakar_name && {
+                malmatteche_prakar_name: {
+                    equals: params.malmatteche_prakar_name
                 }
             }),
             is_delete: 0

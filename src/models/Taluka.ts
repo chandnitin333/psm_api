@@ -80,8 +80,14 @@ export async function updateTaluka(talukaId: number, data: { name?: string; dist
 
 // Delete a taluka by ID
 export async function deleteTaluka(talukaId: number) {
-    const taluka = await prisma.taluka.delete({
+    const taluka = await prisma.taluka.update({
         where: { id: talukaId },
+        data:{ is_delete: 1},
+        select:{
+            id: true,
+            name: true,
+            district_id: true
+        }
     });
     return taluka;
 }
@@ -108,6 +114,8 @@ export async function findTaluka(params) {
             ...(params.id && {
                 district_id: params.id
             })
+            // ,
+            // is_delete: 0
         }
     });
 }

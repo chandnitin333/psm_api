@@ -5,5 +5,5 @@ model Malmattecheprakar {
   created_at  DateTime   @default(now())
   updated_at  DateTime   @updatedAt
   milkar_vapar Milkar_vapar[]
-  malmatta Malmatta[]
+  annual_tax_additional Annual_tax_additional[]
 }

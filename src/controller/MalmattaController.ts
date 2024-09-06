@@ -7,14 +7,14 @@ export class MalmattaController {
 
     static async createMalmatta(req, res, next) {
         try {
-            let { milkateche_varnan, malmatteche_prakar_id } = req.body;
+            let { milkateche_varnan, malmatteche_prakar_name } = req.body;
              let params = {
-                malmatteche_prakar_id: malmatteche_prakar_id,
+                malmatteche_prakar_name: malmatteche_prakar_name,
                 searchText: milkateche_varnan
             }
             let available = await findMalmatta(params);
             if(available.length == 0){
-                let result: any = await createMalmatta(milkateche_varnan, malmatteche_prakar_id);
+                let result: any = await createMalmatta(milkateche_varnan, malmatteche_prakar_name);
                 return ApiResponse.successResponse(res, result.milkateche_varnan+" Malmatta created successfully");
             }else{
                 return ApiResponse.successResponse(res, milkateche_varnan+" Malmatta alraedy exist");
@@ -65,11 +65,11 @@ export class MalmattaController {
     static async updateMalmatta(req, res, next) {
         try {
             let data = req.body;
-            let available = await findMalmatta({ searchText: data.milkateche_varnan, malmatteche_prakar_id: data.malmatteche_prakar_id });
+            let available = await findMalmatta({ searchText: data.milkateche_varnan, malmatteche_prakar_name: data.malmatteche_prakar_id });
             if (available.length > 0) {
                 return ApiResponse.ErrorResponse(res, "Malmatta name already exists",200);
             }
-            let result = await updateMalmatta(parseInt(data.id), { milkateche_varnan: data.milkateche_varnan, malmatteche_prakar_id: data.malmatteche_prakar_id });
+            let result = await updateMalmatta(parseInt(data.id), { milkateche_varnan: data.milkateche_varnan, malmatteche_prakar_name: data.malmatteche_prakar_name });
             return ApiResponse.successResponseWithData(res, "Malmatta updated successfully", result);
              
         } catch (error) {

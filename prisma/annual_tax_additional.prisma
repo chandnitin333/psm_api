@@ -1,0 +1,16 @@
+model Annual_tax_additional {
+    id    Int    @id @default(autoincrement())
+    annual_tax_id Int
+    malmatteche_prakar_id Int
+    malmatteche_varnan_id Int
+    annual_rate Int
+    aakarani_dar Float
+    created_at  DateTime   @default(now())
+    updated_at  DateTime   @updatedAt
+    is_delete Int @default(0)
+    
+    annual_tax Annual_tax   @relation(fields:[annual_tax_id], references:[id])
+    malmatta    Malmatta    @relation(fields:[malmatteche_prakar_id], references:[id])
+    malmatteche_prakar  Malmattecheprakar   @relation(fields:[malmatteche_varnan_id], references:[id])
+    
+}
