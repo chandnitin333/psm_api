@@ -14,6 +14,7 @@ import TalukaRouter from "./routes/TalukaRouter";
 import TaxRouter from "./routes/TaxRouter";
 import userRoutes from './routes/UserRouter';
 import cors = require('cors');
+import AnnualTaxRouter from "./routes/AnnualTax.Router";
 const dotenv = require('dotenv');
 dotenv.config();
 // import fileUpload = require("express-fileupload")
@@ -44,7 +45,7 @@ export class Server {
         // this.app.use('/api/district/', DistrictRouter);
         // this.app.use('/api/taluka/', TalukaRouter);
         // this.app.use('/api/gram-panchayat/', GrampanchayatRouter);
-        this.app.use('/api/admin/', [DistrictRouter, TalukaRouter, GrampanchayatRouter, GatgrampanchayatRouter, FloorRouter, PrakarRouter, MalmattechePrakarRouter, MilkatVaparRouter, MalmattaRouter, TaxRouter, OthertaxRouter]);
+        this.app.use('/api/admin/', [DistrictRouter, TalukaRouter, GrampanchayatRouter, GatgrampanchayatRouter, FloorRouter, PrakarRouter, MalmattechePrakarRouter, MilkatVaparRouter, MalmattaRouter, TaxRouter, OthertaxRouter, AnnualTaxRouter]);
     }
 
 

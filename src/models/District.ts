@@ -71,8 +71,14 @@ export async function updateDistrict(districtId: number, data: { name?: string; 
 
 // Delete a district by ID
 export async function deleteDistrict(districtId: number) {
-    const district = await prisma.district.delete({
+    const district = await prisma.district.update({
         where: { id: districtId },
+        data:{ is_delete: 1},
+        select: {
+            id: true,
+            name: true,
+            is_delete: true
+        },
     });
     return district;
 }
@@ -90,6 +96,8 @@ export async function findDistrict(params) {
                     contains: params.searchText
                 }
             })
+            // ,
+            // is_delete: 0
         }
     });
 }

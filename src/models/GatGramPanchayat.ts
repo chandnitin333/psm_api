@@ -97,42 +97,67 @@ export async function getGatGramPanchayat(gpid: number) {
 }
 
 export async function updateGatGramPanchayat(gpid: number, data: { name?: string; district_id?: number; taluka_id?: number; grampanchayat_id?: number }) {  
-            const gat_grampanchayat_data = await prisma.gatgrampanchayat.update({
-                where: { id: gpid },
-                data,
+    const gat_grampanchayat_data = await prisma.gatgrampanchayat.update({
+        where: { id: gpid },
+        data,
+        select: {
+            id: true,
+            name: true,
+            district_id: true,
+            taluka_id: true,
+            district: {
                 select: {
                     id: true,
-                    name: true,
-                    district_id: true,
-                    taluka_id: true,
-                    district: {
-                        select: {
-                            id: true,
-                            name: true
-                        }
-                    },
-                    taluka: {
-                        select: {
-                            id: true,
-                            name: true
-                        }
-                    },
-                    grampanchayat: {
-                        select: {
-                            id: true,
-                            name: true
-                        }
-                    }
+                    name: true
                 }
-            });
-            return gat_grampanchayat_data;
+            },
+            taluka: {
+                select: {
+                    id: true,
+                    name: true
+                }
+            },
+            grampanchayat: {
+                select: {
+                    id: true,
+                    name: true
+                }
+            }
         }
+    });
+    return gat_grampanchayat_data;
+}
 
 export async function deleteGatGramPanchayat(gpid: number) {
-    const grampanchayat_data = await prisma.gatgrampanchayat.delete({
+    const gat_grampanchayat_data = await prisma.gatgrampanchayat.update({
         where: { id: gpid },
+        data: { is_delete: 1 },
+        select: {
+            id: true,
+            name: true,
+            district_id: true,
+            taluka_id: true,
+            district: {
+                select: {
+                    id: true,
+                    name: true
+                }
+            },
+            taluka: {
+                select: {
+                    id: true,
+                    name: true
+                }
+            },
+            grampanchayat: {
+                select: {
+                    id: true,
+                    name: true
+                }
+            }
+        }
     });
-    return grampanchayat_data;
+    return gat_grampanchayat_data;
 }
 
 export async function getGatGramPanchayatCount() {
@@ -157,6 +182,7 @@ export async function findGatGramPanchayat(params) {
             ...(params.g_id && {
                 grampanchayat_id: params.g_id
             })
+            // ,is_delete: 0
         }
     });
 }

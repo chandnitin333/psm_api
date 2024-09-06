@@ -1,0 +1,17 @@
+model Annual_tax {
+    id    Int    @id @default(autoincrement())
+    district_id Int
+    taluka_id Int
+    grampanchayat_id Int
+    gat_grampanchayat_id Int
+    created_at  DateTime   @default(now())
+    updated_at  DateTime   @updatedAt
+    is_delete Int @default(0)
+
+    district  District    @relation(fields: [district_id], references: [id])
+    taluka    Taluka      @relation(fields:[taluka_id], references:[id])
+    grampanchayat    Grampanchayat      @relation(fields:[grampanchayat_id], references:[id])
+    gat_grampanchayat    Gatgrampanchayat      @relation(fields:[gat_grampanchayat_id], references:[id])
+    annual_tax_additional Annual_tax_additional[]
+    
+}
