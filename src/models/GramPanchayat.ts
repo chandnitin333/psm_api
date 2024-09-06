@@ -99,10 +99,30 @@ export async function updateGramPanchayat(gpid: number, data: { name?: string; d
         }
 
 export async function deleteGramPanchayat(gpid: number) {
-    const grampanchayat_data = await prisma.grampanchayat.delete({
+    const grampanchayat_data = await prisma.grampanchayat.update({
         where: { id: gpid },
+        data:{ is_delete: 1},
+        select: {
+            id: true,
+            name: true,
+            district_id: true,
+            taluka_id: true,
+            district: {
+                select: {
+                    id: true,
+                    name: true
+                }
+            },
+            taluka: {
+                select: {
+                    id: true,
+                    name: true
+                }
+            }
+        }
     });
     return grampanchayat_data;
+        
 }
 
 export async function getGramPanchayatCount() {
@@ -124,6 +144,7 @@ export async function findGramPanchayat(params) {
             ...(params.t_id && {
                 taluka_id: params.t_id
             })
+            // ,is_delete: 0
         }
     });
 }
