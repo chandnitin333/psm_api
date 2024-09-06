@@ -2,4 +2,5 @@ model admin_user {
   id    Int    @id @default(autoincrement())
   password  String
   username String @unique
+  
 }

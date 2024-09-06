@@ -8,7 +8,8 @@
     "prestart": " ts-node prisma/schema.ts",
     "start": "nodemon --exec ts-node src/app.ts",
     "postinstall": "npx prisma generate",
-    "migrate": "npx prisma migrate dev --name init"
+    "migrate": "npx prisma migrate dev --name init",
+     "update-migrate": "npx prisma migrate dev"
   },
   "keywords": [],
   "author": "",
